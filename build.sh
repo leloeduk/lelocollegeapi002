@@ -4,5 +4,7 @@ set -o errexit
 
 pip install freeze -r requirements.txt
 
+pip install -r requirements.txt
+
 pip manage.py collectstatic --no-input
 pip manage.py migrate
