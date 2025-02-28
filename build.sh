@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
-# exit on error
+# Exit immédiatement en cas d'erreur
 set -o errexit
 
-pip install freeze -r requirements.txt
+# Met à jour pip
+pip install --upgrade pip  
 
-pip install -r requirements.txt
+# Installe les dépendances
+pip install -r requirements.txt  
 
-pip manage.py collectstatic --no-input
-pip manage.py migrate
+# Collecte les fichiers statiques (Django)
+python manage.py collectstatic --no-input  
+
+# Applique les migrations
+python manage.py migrate  
