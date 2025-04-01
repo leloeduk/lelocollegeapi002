@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Classe, Matiere, Chapitre, Devoir, Document, BEPEC
-from api.api.serializers import ClasseSerializer, MatiereSerializer, ChapitreSerializer, DevoirSerializer, DocumentSerializer, BEPECSerializer
+from .models import Classe, Matiere, Chapitre, Devoir, Document, BEPEC ,Corrige, CorrigeBEPEC
+from api.api.serializers import ClasseSerializer, MatiereSerializer, ChapitreSerializer, DevoirSerializer, DocumentSerializer, BEPECSerializer, CorrigeSerializer, CorrigeBEPECSerializer
 
 class ClasseViewSet(viewsets.ModelViewSet):
     queryset = Classe.objects.all()
@@ -25,3 +25,12 @@ class DocumentViewSet(viewsets.ModelViewSet):
 class BEPECViewSet(viewsets.ModelViewSet):
     queryset = BEPEC.objects.all()
     serializer_class = BEPECSerializer
+
+class CorrigeViewSet(viewsets.ModelViewSet):
+    queryset = Corrige.objects.all()
+    serializer_class = CorrigeSerializer
+
+
+class CorrigeBEPECViewSet(viewsets.ModelViewSet):
+    queryset = CorrigeBEPEC.objects.all()
+    serializer_class = CorrigeBEPECSerializer
