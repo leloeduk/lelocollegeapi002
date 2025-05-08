@@ -2,16 +2,51 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Classe(models.Model):
-    nom = models.CharField(max_length=50)
-    author = models.ForeignKey(User, related_name='classes', on_delete=models.CASCADE)
+    nom = models.CharField(
+        max_length=50,
+        verbose_name="Nom de la classe",
+        help_text="Ex: 6ème A, 5ème B, etc."
+    )
+    author = models.ForeignKey(
+        User,
+        related_name='classes',
+        on_delete=models.CASCADE,
+        verbose_name="Créateur",
+        help_text="Enseignant qui a créé cette classe"
+    )
+
+    class Meta:
+        verbose_name = "Classe"
+        verbose_name_plural = "Classes"
+        ordering = ['nom']  # Tri alphabétique par défaut
 
     def __str__(self):
         return self.nom
 
 class Matiere(models.Model):
-    nom = models.CharField(max_length=50)
-    classes = models.ManyToManyField(Classe, related_name='matieres')
-    author = models.ForeignKey(User, related_name='matieres', on_delete=models.CASCADE)
+    nom = models.CharField(
+        max_length=50,
+        verbose_name="Nom de la matière",
+        help_text="Ex: Mathématiques, Français, etc."
+    )
+    classes = models.ManyToManyField(
+        Classe,
+        related_name='matieres',
+        verbose_name="Classes concernées",
+        help_text="Sélectionnez les classes pour cette matière"
+    )
+    author = models.ForeignKey(
+        User,
+        related_name='matieres',
+        on_delete=models.CASCADE,
+        verbose_name="Créateur",
+        help_text="Enseignant qui a créé cette matière"
+    )
+
+    class Meta:
+        verbose_name = "Matière"
+        verbose_name_plural = "Matières"
+        ordering = ['nom']  # Tri alphabétique par défaut
 
     def __str__(self):
         return self.nom
